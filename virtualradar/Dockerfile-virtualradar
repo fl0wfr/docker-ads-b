@@ -1,4 +1,4 @@
-FROM multiarch/debian-debootstrap:armhf-buster-slim as base
+FROM multiarch/debian-debootstrap:amd64-buster-slim as base
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends apt-transport-https ca-certificates dirmngr gnupg && \
@@ -67,7 +67,7 @@ COPY --from=builder /vrs /opt/vrs
 COPY InstallerConfiguration.xml /root/.local/share/VirtualRadar/InstallerConfiguration.xml
 COPY vrs-runner.sh /usr/local/bin/vrs-runner
 
-EXPOSE 30053
+EXPOSE 8080
 
 HEALTHCHECK --start-period=1m --interval=30s --timeout=5s --retries=3 CMD curl --fail http://localhost:8080/VirtualRadar/ || exit 1
 

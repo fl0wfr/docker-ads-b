@@ -1,15 +1,15 @@
-FROM multiarch/debian-debootstrap:armhf-buster-slim
+FROM multiarch/debian-debootstrap:amd64-buster-slim
 
 ARG FR24FEED_VERSION
 ARG FR24FEED_HASH
 
-# Find the laest version @ http://repo.feed.flightradar24.com/ searching for "rpi_binaries/fr24feed_*_armhf.tgz"
+# Find the laest version @ http://repo.feed.flightradar24.com/ searching for "rpi_binaries/fr24feed_*_amd64.tgz"
 # With the changelog @ http://repo.feed.flightradar24.com/CHANGELOG.md
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates iputils-ping dnsutils && \
-    curl --output fr24feed.tgz "http://repo.feed.flightradar24.com/rpi_binaries/fr24feed_${FR24FEED_VERSION}_armhf.tgz" && \
+    curl --output fr24feed.tgz "http://repo.feed.flightradar24.com/linux_x86_64_binaries/fr24feed_${FR24FEED_VERSION}_amd64.tgz" && \
     sha256sum fr24feed.tgz && echo "${FR24FEED_HASH}  fr24feed.tgz" | sha256sum -c && \
-    tar -xvf fr24feed.tgz --strip-components=1 fr24feed_armhf/fr24feed && \
+    tar -xvf fr24feed.tgz --strip-components=1 fr24feed_amd64/fr24feed && \
     mv fr24feed /usr/bin/fr24feed && \
     rm fr24feed.tgz && \
     apt-get clean && \

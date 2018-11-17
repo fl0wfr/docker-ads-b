@@ -1,4 +1,4 @@
-FROM multiarch/debian-debootstrap:armhf-buster-slim
+FROM multiarch/debian-debootstrap:i386-buster-slim
 
 ARG PFCLIENT_VERSION
 ARG PFCLIENT_HASH
@@ -7,7 +7,7 @@ ARG PFCLIENT_HASH
 # With the changelog @ https://planefinder.net/sharing/client_changelog
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates iputils-ping libc-bin libc-dbg && \
-    curl --output pfclient.tar.gz "http://client.planefinder.net/pfclient_${PFCLIENT_VERSION}_armhf.tar.gz" && \
+    curl --output pfclient.tar.gz "http://client.planefinder.net/pfclient_${PFCLIENT_VERSION}_i386.tar.gz" && \
     md5sum pfclient.tar.gz && echo "${PFCLIENT_HASH}  pfclient.tar.gz" | md5sum -c && \
     tar -xvf pfclient.tar.gz && \
     mv pfclient /usr/local/bin/pfclient && \

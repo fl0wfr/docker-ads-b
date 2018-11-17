@@ -18,7 +18,7 @@ services:
     #  - "30002:30002/tcp"
     #  - "30005:30005/tcp"
     devices:
-      - "/dev/bus/usb/001/007"
+      - "/dev/bus/usb/001/002"
     env_file:
       - variables-dump1090.env
     cap_add:
@@ -29,7 +29,7 @@ services:
         constraints:
           - node.hostname == shed
       restart_policy:
-        condition: always
+        condition: unless-stopped
         delay: 5s
       resources:
         reservations:
@@ -45,8 +45,8 @@ services:
         - thebiggerguy/docker-ads-b-flightradar24
         - thebiggerguy/docker-ads-b-flightradar24:${TAG:-latest}
       args:
-        FR24FEED_VERSION: 1.0.19-15
-        FR24FEED_HASH: ea2674b5eaa071d3e469a103971a2d42973014d5fde8fd3b0fe123dbd4f1476b
+        FR24FEED_VERSION: 1.0.18-5
+        FR24FEED_HASH: 770e86b640bcbb8850df67aaa8072a85ac941e2e2f79ea25ef44d67e89bc5649
     ports:
       - "8754:8754/tcp"
     depends_on:
@@ -56,7 +56,7 @@ services:
     deploy:
       mode: global
       restart_policy:
-        condition: always
+        condition: unless-stopped
         delay: 5s
   
   # planefinder ###############################################################
@@ -70,7 +70,7 @@ services:
         - thebiggerguy/docker-ads-b-planefinder:${TAG:-latest}
       args:
         PFCLIENT_VERSION: 4.1.1
-        PFCLIENT_HASH: c2411ca2c9ce1a6a00c1c8af0ce3f7f9
+        PFCLIENT_HASH: db3ffb12318ac6f75c4baf73d3f5644d
     ports:
       - "30053:30053/tcp"
     depends_on:
@@ -80,7 +80,7 @@ services:
     deploy:
       mode: global
       restart_policy:
-        condition: always
+        condition: unless-stopped
         delay: 5s
 
   # adsbexchange ##############################################################
@@ -98,7 +98,7 @@ services:
       - variables-adsbexchange.env
     deploy:
       restart_policy:
-        condition: always
+        condition: unless-stopped
         delay: 5s
 
   # adsbexchange-mlat #########################################################
@@ -121,7 +121,7 @@ services:
       - variables-adsbexchange-mlat.env
     deploy:
       restart_policy:
-        condition: always
+        condition: unless-stopped
         delay: 5s
 
   # adsbhub ###################################################################
@@ -139,7 +139,7 @@ services:
       - variables-adsbhub.env
     deploy:
       restart_policy:
-        condition: always
+        condition: unless-stopped
         delay: 5s
 
   # openskynetwork ############################################################
@@ -159,7 +159,7 @@ services:
       - variables-openskynetwork.env
     deploy:
       restart_policy:
-        condition: always
+        condition: unless-stopped
         delay: 5s
 
   # flightaware ###############################################################
@@ -188,7 +188,7 @@ services:
       - variables-flightaware.env
     deploy:
       restart_policy:
-        condition: always
+        condition: unless-stopped
         delay: 5s
 
   # virtualradar ##############################################################
@@ -211,7 +211,7 @@ services:
       - variables-virtualradar.env
     deploy:
       restart_policy:
-        condition: always
+        condition: unless-stopped
         delay: 5s
       resources:
         limits:

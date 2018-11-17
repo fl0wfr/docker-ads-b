@@ -1,5 +1,5 @@
 # base ########################################################################
-FROM multiarch/debian-debootstrap:armhf-buster-slim as base
+FROM multiarch/debian-debootstrap:amd64-buster-slim as base
 
 ENV LC_ALL=C.UTF-8 LANG=C.UTF-8
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
