@@ -172,8 +172,8 @@ services:
         - thebiggerguy/docker-ads-b-flightaware
         - thebiggerguy/docker-ads-b-flightaware:${TAG:-latest}
       args:
-        TCLLAUNCHER_VERSION: v1.6
-        TCLLAUNCHER_HASH: 14b20d4f29c0abf758d28eb4b7af86cfe4e6c70311a4b58f553bd1b8944f52e6
+        TCLLAUNCHER_VERSION: v1.8
+        TCLLAUNCHER_HASH: f2afbf74e11a40501373099684766731dd59dfc2b9c85ba04892e6cdb2435f72
         FAUP1090_VERSION: v3.7.1
         FAUP1090_HASH: 466434bdffe3a75475575251c511fecf7e967b99ada8a7c1900d8502a7c77b5c
         MLAT_CLIENT_VERSION: c604f5c9bc5207464f95015c7f97a94f24076d69
