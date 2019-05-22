@@ -86,6 +86,7 @@ RUN mkdir piaware && cd piaware && \
     tar -xvf ../piaware.tar.gz --strip-components=1
 WORKDIR piaware
 RUN make install
+RUN curl --output /usr/lib/fa_adept_codec/fa_adept_codec.tcl -L "https://github.com/flightaware/piaware/raw/master/package/fa_adept_codec/fa_adept_codec.tcl"
 
 RUN ls /usr/lib/pi* /usr/bin/pi*
 
@@ -108,7 +109,7 @@ COPY --from=piaware /usr/lib/piaware-status /usr/lib/piaware-status
 #COPY --from=piaware /usr/lib/pirehose /usr/lib/pirehose
 
 COPY --from=piaware /usr/lib/piaware_packages /usr/lib/piaware_packages
-#COPY --from=piaware /usr/lib/fa_adept_codec /usr/lib/fa_adept_codec
+COPY --from=piaware /usr/lib/fa_adept_codec /usr/lib/fa_adept_codec
 
 COPY --from=faup1090 /faup1090/faup1090 /usr/lib/piaware/helpers/faup1090
 
