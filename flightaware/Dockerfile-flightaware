@@ -70,10 +70,10 @@ run shiv -c fa-mlat-client -o /usr/local/bin/fa-mlat-client /mlat-client.tar.gz
 # piaware #####################################################################
 FROM builder-base as piaware
 
-#COPY --from=tcllauncher /usr/lib/Tcllauncher1.6/tcllauncher.tcl /usr/lib/Tcllauncher1.6/tcllauncher.tcl
-#COPY --from=tcllauncher /usr/lib/Tcllauncher1.6/tcllauncher-support.tcl /usr/lib/Tcllauncher1.6/tcllauncher-support.tcl
+#COPY --from=tcllauncher /usr/lib/Tcllauncher1.8/tcllauncher.tcl /usr/lib/Tcllauncher1.8/tcllauncher.tcl
+#COPY --from=tcllauncher /usr/lib/Tcllauncher1.8/tcllauncher-support.tcl /usr/lib/Tcllauncher1.8/tcllauncher-support.tcl
 # TODO: Version number from TCLLAUNCHER_VERSION
-COPY --from=tcllauncher /usr/lib/Tcllauncher1.6 /usr/lib/Tcllauncher1.6
+COPY --from=tcllauncher /usr/lib/Tcllauncher1.8 /usr/lib/Tcllauncher1.8
 COPY --from=tcllauncher /usr/bin/tcllauncher /usr/bin/tcllauncher
 COPY --from=tcllauncher /opt/tcl /opt/tcl
 
@@ -93,7 +93,7 @@ RUN ls /usr/lib/pi* /usr/bin/pi*
 # final image #################################################################
 FROM base
 
-COPY --from=tcllauncher /usr/lib/Tcllauncher1.6 /usr/lib/Tcllauncher1.6
+COPY --from=tcllauncher /usr/lib/Tcllauncher1.8 /usr/lib/Tcllauncher1.8
 
 COPY --from=piaware /usr/bin/piaware /usr/bin/piaware
 COPY --from=piaware /usr/lib/piaware /usr/lib/piaware
